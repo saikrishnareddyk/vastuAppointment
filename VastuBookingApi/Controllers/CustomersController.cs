@@ -36,6 +36,27 @@ namespace VastuBookingApi.Controllers
             return Ok(customer);
         }
 
+        //example-https://localhost:7075/api/Customers/by-place/Hyderabad
+        [HttpGet("by-place/{place}")]
+        public async Task<ActionResult<List<Customer>>> GetCustomersByPlace(string place)
+        {
+            if (string.IsNullOrWhiteSpace(place))
+            {
+                return BadRequest("Place is required");
+            }
+
+            var customers = await _context.Customers
+                .Where(c => c.Place == place)
+                .ToListAsync();
+
+            if (customers.Count == 0)
+            {
+                return NotFound("No customers found for this place");
+            }
+
+            return Ok(customers);
+        }
+
         [HttpPost]
         public async Task<ActionResult<Customer>> CreateCustomer(Customer customer)
         {

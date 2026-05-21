@@ -2,7 +2,7 @@
 
 namespace VastuBookingApi.Models
 {
-    public class  
+    public class Customer
     {
         public int Id { get; set; }
 
@@ -18,8 +18,9 @@ namespace VastuBookingApi.Models
 
         public string Address { get; set; } = string.Empty;
 
-        public string Place { get; set; } = string.Empty;
+        public string? Place { get; set; }
+        public string? InterestedServices { get; set; }
 
-        public string InterestedServices { get; set; } = string.Empty;
+      
     }
 }
